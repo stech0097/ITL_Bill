@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Freight Bill</title>
+  <style>
+	@media print {
+	@page {
+		size: landscape;
+	  }
+	}
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      margin: 20px;
+    }
+    b {
+		color:black;
+	}
+    .bill-header {
+      text-align: center;
+      border-bottom: 2px solid black;
+      padding-bottom: 10px;
+    }
+    .bill-header img {
+      height: 90px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .title {
+      font-size: 22px;
+      font-weight: bold;
+      background: black;
+      color: white;
+      display: inline-block;
+      padding: 5px 15px;
+      margin-top: 10px;
+    }
+    .company {
+      margin-top: 10px;
+    }
+    .company h2 {
+      margin: 5px 0;
+    }
+    .company p {
+      margin: 3px 0;
+    }
+    .details {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .table-container {
+      margin-top: 15px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 6px;
+    }
+    .total td{
+      margin-top: 10px;
+      font-weight: bold;
+      padding: 5px;
+	  border-top: 1px solid black; /* Adjust color and thickness as needed */
+	  border-left: none;
+	  border-right: none;
+	  border-bottom: 1px solid black;
+	  text-align: left;
+    }
+	.blank tr, td{
+	  border-top: none; /* Adjust color and thickness as needed */
+	  border-left: 1px solid black;
+	  border-right: 1px solid black;
+	  border-bottom: none;
+	}
+    .footer {
+      margin-top: 40px;
+      text-align: right;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="bill-header">
+    <!-- Replace src with your actual logo -->
+    <img src="file:///C:\Users\shubh\Downloads\ITL_logo.PNG" alt="Company Logo"><br>
+    <div class="title">FREIGHT BILL</div>
+    <div class="company">
+      <h2>INDIAN TRANS LOGISTICS</h2>
+      <p>5 Archana Campus, Narela Shankari, Bhopal (M.P.), 462023</p>
+      <p>Mob: 9300155322, 7389819518</p>
+      <p>Email: indiantranslogistics.itl@gmail.com</p>
+      <p>PAN NO: AYCPD7824R</p>
+    </div>
+  </div>
+
+  <div class="details">
+    <p style="color:red;"><b>BILL NO:</b> {{ bill_no }}</p>
+    <p><b>BILL DATE:</b> {{ bill_date }}</p>
+  </div>
+
+  <h3 style="text-align:center;">{{ customer_name }}</h3>
+
+  <div class="table-container">
+    <table>      
+      <thead>
+        <tr>
+          <th>S. NO.</th>
+          <th>CN NO.</th>
+          <th>CN DATE</th>
+          <th>WEIGHT</th>
+          <th>RATE</th>
+          <th>FREIGHT</th>
+          <th>DETENTION</th>
+          <th>OTHER EXP</th>
+          <th>VEHICLE NO.</th>
+          <th>FROM</th>
+          <th>TO</th>
+          <th>BILL AMOUNT</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in items %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ row.cn_no }}</td>
+            <td>{{ row.cn_date }}</td>
+            <td>{{ row.weight }}</td>
+            <td>{{ row.rate }}</td>
+            <td>{{ row.freight }}</td>
+            <td>{{ row.detention }}</td>
+            <td>{{ row.other_exp }}</td>
+            <td>{{ row.vehicle_no }}</td>
+            <td>{{ row.from_city }}</td>
+            <td>{{ row.to_city }}</td>
+            <td>{{ row.bill_amount }}</td>
+            </tr>
+        <tr>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+          
+            </tr>
+        <tr>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+          
+            </tr>
+        <tr>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+          
+            </tr>
+        <tr>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+          
+            </tr>		
+        <tr>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+          
+            </tr>
+        <tr>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+              <td class = "blank"></td>
+          
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="total">
+	<table>
+	<tbody>
+		<tr>
+			<td  colspan = "11">GRAND TOTAL: </td>
+			<td text-align: center;>{{ grand_total }} </td>
+
+		</tr>
+		<tr>
+			<td  colspan = "11">AMOUNT IN WORDS: </td>
+			<td text-align: center;>{{ amount_words }}</td>
+
+		</tr>
+	</tbody>
+	</table>
+
+  </div>
+
+  <div class="footer">
+    FOR: INDIAN TRANS LOGISTICS <br><br>
+    <img src="file:///C:\Users\shubh\Downloads\ITL_Sign.PNG" alt="Signature" style="height:50px;"><br>
+    Authorized Signatory
+  </div>
+</body>
+</html>
