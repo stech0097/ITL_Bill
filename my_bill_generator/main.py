@@ -12,6 +12,17 @@ app = FastAPI()
 templates_dir = os.path.join(os.path.dirname(__file__), "templates")
 env = Environment(loader=FileSystemLoader(templates_dir))
 
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # React dev server
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+     expose_headers=["Content-Disposition"],
+)
+
 @app.post("/generate-pdf")
 async def generate_pdf(data: dict):
     """
@@ -40,6 +51,10 @@ async def generate_pdf(data: dict):
 
     # Generate PDF
     bill_no = data.get("bill_no", "unknown")
+    filename = f"Bill_No_{bill_no}.pdf"
+    headers = {
+      "Content-Disposition": f'attachment; filename="{filename}"'
+    }
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmpfile:
         HTML(string=html_content).write_pdf(tmpfile.name)
-        return FileResponse(tmpfile.name, media_type="application/pdf", filename=f"Bill_no.{bill_no}.pdf")
+        return FileResponse(tmpfile.name, media_type="application/pdf", filename=filename)
