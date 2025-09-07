@@ -1,0 +1,25 @@
+service: itl-bill-backend
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: ap-south-1
+  stage: ${opt:stage, 'dev'}
+  environment:
+    STAGE: ${self:provider.stage}
+
+functions:
+  api:
+    handler: app.main.handler
+    events:
+      - httpApi: 
+          path: /{proxy+}
+          method: ANY
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true

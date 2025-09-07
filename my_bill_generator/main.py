@@ -2,9 +2,10 @@ from fastapi import FastAPI, Response
 from fastapi.responses import FileResponse
 from jinja2 import Environment, FileSystemLoader
 from weasyprint import HTML, CSS
-
+from fastapi.middleware.cors import CORSMiddleware
 import os
 import tempfile
+from mangum import Mangum
 
 app = FastAPI()
 
@@ -12,15 +13,16 @@ app = FastAPI()
 templates_dir = os.path.join(os.path.dirname(__file__), "templates")
 env = Environment(loader=FileSystemLoader(templates_dir))
 
-from fastapi.middleware.cors import CORSMiddleware
+origins = os.getenv("ALLOWED_ORIGINS", "")
+ALLOWED_ORIGINS = [o.strip() for o in origins.split(",")]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React dev server
+    allow_origins=ALLOWED_ORIGINS,  # React dev server
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-     expose_headers=["Content-Disposition"],
+    expose_headers=["Content-Disposition"],
 )
 
 @app.post("/generate-pdf")
@@ -58,3 +60,5 @@ async def generate_pdf(data: dict):
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmpfile:
         HTML(string=html_content).write_pdf(tmpfile.name)
         return FileResponse(tmpfile.name, media_type="application/pdf", filename=filename)
+
+handler = Mangum(app)
