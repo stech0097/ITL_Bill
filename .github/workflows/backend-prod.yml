@@ -1,4 +1,4 @@
-name: Backend CI/CD - prod
+name: my_bill_generator CI/CD - prod
 
 on:
   push:
