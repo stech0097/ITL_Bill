@@ -43,5 +43,5 @@ jobs:
     - name: Deploy Lambda
       run: |
         aws lambda update-function-code \
-          --function-name itl-bill-prod \
+          --function-name itl-bill-backend-dev \
           --zip-file fileb://backend/function.zip
