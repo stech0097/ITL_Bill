@@ -3,7 +3,7 @@ name: Backend CI/CD - qa
 on:
   push:
     paths:
-      - 'backend/**'
+      - 'my_bill_generator/**'
     branches:
       - qa
 

@@ -3,9 +3,9 @@ name: Backend CI/CD - Dev
 on:
   push:
     paths:
-      - 'backend/**'
+      - 'my_bill_generator/**'
     branches:
-      - develop
+      - dev
 
 permissions:
   id-token: write   # For OIDC
