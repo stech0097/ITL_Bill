@@ -30,7 +30,7 @@ async def generate_pdf(data: dict):
     """
     Expects a JSON like:
     {
-      "bill_no": "616",
+      "bill_no": "617",
       "bill_date": "16/08/2025",
       "customer_name": "PRIYA MACHINE MANDIDEEP",
       "items": [
