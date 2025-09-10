@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://127.0.0.1:8000"; // move to .env for prod
+const API_BASE_URL = "https://44kjyz2ar56xf4pmlideattsne0njnoe.lambda-url.us-east-1.on.aws/"; // move to .env for prod
 
 export const generateBillPdf = async (billData) => {
   const response = await axios.post(`${API_BASE_URL}/generate-pdf`, billData, {
