@@ -28,7 +28,7 @@ app.add_middleware(
 @app.post("/generate-pdf")
 async def generate_pdf(data: dict):
     """
-    Expects JSON like:
+    Expects a JSON like:
     {
       "bill_no": "616",
       "bill_date": "16/08/2025",
