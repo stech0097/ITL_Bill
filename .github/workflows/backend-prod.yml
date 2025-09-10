@@ -44,4 +44,4 @@ jobs:
       run: |
         aws lambda update-function-code \
           --function-name itl-bill-backend-dev \
-          --zip-file fileb://backend/function.zip
+          --zip-file fileb://my_bill_generator/function.zip
